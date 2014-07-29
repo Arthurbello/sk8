@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from skate_shop.models import SkateUser
+from django.forms import ModelForm
+from skate_shop.models import SkateUser, Post
 from cloudinary.models import CloudinaryField
 import cloudinary
 import cloudinary.uploader
@@ -14,10 +14,10 @@ class SkateUserCreationForm(UserCreationForm):
         email = forms.EmailField(required=True)
         first_name = forms.CharField(max_length=100)
         last_name = forms.CharField(max_length=100)
-        image = forms.ImageField(required=True)
+        avatar = forms.ImageField(required=True)
         class Meta:
             model = SkateUser
-            fields = ('image', "username", 'first_name', 'last_name', "email", "password1",
+            fields = ('avatar', "username", 'first_name', 'last_name', "email", "password1",
                      "password2")
 
         def clean_username(self):
@@ -25,10 +25,16 @@ class SkateUserCreationForm(UserCreationForm):
             # but it sets a nicer error message than the ORM. See #13147.
             username = self.cleaned_data["username"]
             try:
-                User.objects.get(username=username)
-            except User.DoesNotExist:
+                SkateUser.objects.get(username=username)
+            except SkateUser.DoesNotExist:
                 return username
             raise forms.ValidationError(
                 self.error_messages['duplicate_username'],
                 code='duplicate_username',
             )
+
+class PostCreationForm(forms.Form):
+    title = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+    # description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'myfieldclass'}))
+    image = forms.ImageField(required=True)
+    location = forms.CharField(max_length=120)

@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'south',
     'skate_shop',
     'embed_video',
-    'cloudinary',
 
 )
 

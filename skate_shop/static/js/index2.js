@@ -1,9 +1,9 @@
 $(document).ready(function() {
 var collection = [];
 var move;
-var searchQuery = "skateboard";
+var searchQuery = "skateboard, hats";
 var myApiKey = 'gyz1gkwjb5bucyw7vj4evh8d';
-var limit = 50;
+var limit = 150;
 //    $('#store').one('click', function() {
 //        $('body').append('<button id="coke">Get recent listings for this store</button>');
 //        $.ajax({
@@ -25,12 +25,13 @@ var limit = 50;
             for (var j = 0; j < movie_response.results.length; j++) {
                 move = {};
                 console.log(movie_response);
+                move.image_url = movie_response.results[j].url_170x135;
                 move.title = movie_response.results[j].title;
                 move.price = movie_response.results[j].price;
                 move.listing_id = movie_response.results[j].listing_id;
                 collection.push(move);
 //                console.log(collection);
-                $('#work').append('<div class="' + movie_response.results[j].listing_id + '" id="snot"><p>' + movie_response.results[j].title + '</p><p>Price $'+movie_response.results[j].price+'</p><br><button class="button" id="'+movie_response.results[j].listing_id+'">Add to cart</button></div>')
+                $('#eachone').append('<div style="border-style: solid; border-radius:15px; float: right; padding:10px;background-color:black; color: white; margin: 10px; width: 250px; height: 300px;" class="' + movie_response.results[j].listing_id + '" id="snot"><p>' + movie_response.results[j].title + '</p><img src="' + move.image_url + '"><p>Price $'+movie_response.results[j].price+'</p><br><button style="color: black" class="button" id="'+movie_response.results[j].listing_id+'">Add to cart</button></div>')
 
             }
 
@@ -81,3 +82,9 @@ var limit = 50;
 //    })
 });
 
+window.onscroll = scroll;
+
+function scroll () {
+alert("scroll event detected! " + window.pageXOffset + " " + window.pageYOffset);
+// note: you can use window.innerWidth and window.innerHeight to access the width and height of the viewing area
+//}

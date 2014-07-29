@@ -1,0 +1,39 @@
+{% extends 'base_template.html' %}
+{% block content %}
+
+    <br><br><div style="background-color: white">
+<header style="float: right">
+<ul class="nav nav-pills">
+  <li class="active"><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'shop' %}">Shop</a></li>
+  <li class="dropdown">
+          {% if user.is_authenticated %}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
+            <li><a href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
+            <li><a href="{% url 'logout' %}"  style="color: white">Sign Out</a></li>
+      {% else %}
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+          </ul>
+        </li>
+
+</ul>
+</header><br><br>
+<div style="background-color: black; display: inline-block; float: right; height: 200px">as</div>
+<div style="padding: 15px; font-family: Impact, Charcoal, sans-serif">
+    <div style="background-color: mediumpurple; display: inline-block; padding: 20px; margin-right: 80%"><img width="100%"  src="{{ profile.avatar.url }}"></div>
+
+    <p style="color: black; font-size: 40px;">{{ profile.username }}</p>
+    </div>
+</div><br><br><br>
+    <div style="background-color: white">
+<p style="text-align: center"><span style="background-color: black; font-family: Arial Black; font-size: 40px; padding: 10px">Latest Posts</span></p>
+{% for i in set %}
+    {{ i.title }}
+    <p style="text-align: center"><img width="40%"  src="{{ i.image.url }}"></p>
+    {% endfor %}
+    </div>
+{% endblock content %}

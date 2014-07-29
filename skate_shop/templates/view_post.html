@@ -1,0 +1,44 @@
+{% extends 'base_template.html' %}
+{% block content %}
+{#{% include 'include/hand.html' %}#}
+        <header style="float: right">
+    <ul class="nav nav-pills">
+  <li><a href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'shop' %}">Shop</a></li>
+  <li class="dropdown">
+       {% if user.is_authenticated %}
+          <a href="#" class="dropdown-toggle" id="active" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a class="sh" href="{% url 'profile' %}" style="color: white">My Profile</a></li>
+            <li><a class="sh" href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
+            <li><a class="sh" href="{% url 'logout' %}"  style="color: white">Sign Out</a></li>
+      {% else %}
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+          </ul>
+        </li>
+    </ul>
+</header><br><br>
+     {% if not set %}
+            <p style="text-align: center">No Posts</p>
+
+    {% else %}
+    {% for i in set %}
+
+
+
+<br><br><div style="border-style: solid; color:black;background-color: white;;padding: 10px; margin-left: 20%; margin-right: 20% ">
+    <ul>
+         <div style=" display: inline-block; font-size: 30px"><b>
+ {{ forloop.counter }}. {{ i.title }}
+         </b>
+         </div>
+        <hr>
+    </ul>
+    <p style="text-align: center"><img width="70%"  src="{{ i.image.url }}"></p>
+</div><br>
+    {% endfor %}
+    {% endif %}
+
+{% endblock content %}

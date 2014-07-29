@@ -1,4 +1,221 @@
 {% extends 'base_template.html'%}
+{% load staticfiles %}
 {% block content %}
-<
+
+    <style>
+.thebutton {background-color: gold}
+
+    a:link {color: rgb(208, 208, 208)}
+    a:visited {color: rgb(208, 208, 208)}
+    a:hover {color: rgb(208, 208, 208)}
+    a:active {color: rgb(208, 208, 208)}
+{#    #image1:hover {opacity: 0}#}
+{#    #image2:hover {opacity: 0}#}
+{#    #image3:hover {opacity: .1}#}
+.fresh {background-color: #f5f5f5}
+.niece {background-color: floralwhite}
+    ul.img-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+ul.img-list li {
+  display: inline-block;
+  height: 150px;
+  margin: 0 1em 1em 0;
+  position: relative;
+  width: 150px;
+}
+
+span.text-content {
+  background: rgba(0,0,0,0.5);
+  color: mediumpurple;
+  cursor: pointer;
+  display: table;
+  height: 150px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 210px;
+  opacity: 0;
+  -webkit-transition: opacity 500ms;
+  -moz-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  transition: opacity 500ms;
+}
+
+ul.img-list li:hover span.text-content {
+  opacity: 2;
+}
+
+span.text-content span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+    </style>
+	<link rel="stylesheet" type="text/css" href="../static/img/engine1/style.css" />
+	<script type="text/javascript" src="../static/img/engine1/jquery.js"></script>
+    <br><br>
+<div style="background-color: white">
+<header style="float: right">
+<ul class="nav nav-pills">
+  <li class="active"><a style="color: darkgray" href="{% url 'home' %}">Home</a></li>
+      <li><a style="color: darkgray" href="{% url 'shop' %}">Shop</a></li>
+  <li class="dropdown">
+          {% if user.is_authenticated %}
+          <a href="#" style="color: darkgray" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
+            <li><a href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
+            <li><a href="{% url 'logout' %}"  style="color: white">Sign Out</a></li>
+      {% else %}
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+          </ul>
+        </li>
+
+</ul>
+</header><br><br>
+
+    <div id="wowslider-container1">
+	<div class="ws_images"><ul>
+<li><img src="../static/img/data1/images/skate1.jpg" alt="skate1" title="skate1" id="wows1_0"/></li>
+<li><img src="../static/img/data1/images/skate2.jpg" alt="skate2" title="skate2" id="wows1_1"/></li>
+<li><img src="../static/img/data1/images/skate3.jpg" alt="skate3" title="skate3" id="wows1_2"/></li>
+<li><img src="../static/img/data1/images/skate4.jpg" alt="skate4" title="skate4" id="wows1_3"/></li>
+<li><img src="../static/img/data1/images/skate5.jpg" alt="skate5" title="skate5" id="wows1_4"/></li>
+</ul></div>
+<div class="ws_thumbs">
+<div>
+<a href="#" title="skate1"><img src="../static/img/data1/tooltips/skate1.jpg" alt="" /></a>
+<a href="#" title="skate2"><img src="../static/img/data1/tooltips/skate2.jpg" alt="" /></a>
+<a href="#" title="skate3"><img src="../static/img/data1/tooltips/skate3.jpg" alt="" /></a>
+<a href="#" title="skate4"><img src="../static/img/data1/tooltips/skate4.jpg" alt="" /></a>
+<a href="#" title="skate5"><img src="../static/img/data1/tooltips/skate5.jpg" alt="" /></a>
+</div>
+</div>
+{#<span class="wsl"><a href="http://wowslider.com">slider jquery</a> by WOWSlider.com v5.6m</span>#}
+	<div class="ws_shadow"></div>
+	</div>
+	<script type="text/javascript" src="../static/img/engine1/wowslider.js"></script>
+	<script type="text/javascript" src="../static/img/engine1/script.js"></script>
+	<!-- End WOWSlider.com BODY section -->
+</div><br><br>
+{#<div style="margin-left: 2%;margin-right: auto">#}
+{#    <img id="image1" style="width: 30%; padding-left: 7%" src="../static/img/image1.jpg">#}
+{#    <img id="image2" style="width: 30%; padding-left: 7%" src="../static/img/image2.jpg">#}
+{#    <img id="image3" style="width: 30%; padding-left: 7%" src="../static/img/image3.jpeg">#}
+{#    </div><br>#}
+    <div>
+<ul class="img-list" style="float: right; margin-right: 21.5%">
+  <li>
+    <a href="{% url 'shop' %}">
+      <img id="image1" style="width: 140%; padding-left: 3%" src="../static/img/image1.jpg">
+      <span class="text-content"><span style="font-size: 30px">Shop Snapbacks</span></span>
+    </a>
+  </li>
+
+</ul>
+
+<ul class="img-list" style="float: right; margin-right: 17.5%">
+  <li>
+    <a href="{% url 'shop' %}">
+      <img id="image2" style="width: 140%; padding-left: 3%" src="../static/img/image2.jpg">
+      <span class="text-content"><span style="font-size: 30px">Shop Shoes</span></span>
+    </a>
+  </li>
+
+</ul>
+
+<ul class="img-list" style="float: right; margin-right: 17.5%">
+  <li>
+    <a href="{% url 'shop' %}">
+      <img id="image3" style="width: 140%; height: 95%; padding-left: 3%" src="../static/img/image3.jpg">
+      <span class="text-content"><span style="font-size: 30px">Shop Skateboards</span></span>
+    </a>
+  </li>
+
+</ul>
+        </div><br><br><br><br><br><br><br><br><br>
+
+<div style="background-color: white; color: black">
+    <div class="btn-group" style="margin-left: 42%">
+  <button id='button1' type="button" class="btn btn-default">Latest Posts</button>
+  <button id='button2' type="button" class="btn btn-default">Most Liked</button>
+  <button id='button3' type="button" class="btn btn-default">Most Viewed</button>
+</div>
+</div>
+
+  <div id='post' style="display: none">
+<div style="background-color: white; color: black">
+{#{{ avatar }}#}
+      {% for i in set %}
+
+          <div style="height: 30px; background-color: black"></div>
+          <div class="{% cycle 'fresh' 'niece'  %}" style="padding: 10px">
+{#      <p style="font-size: 30px">{{ forloop.counter }}.</p>#}
+              <div style="padding: 5px; background-color: black; margin-right: 90%"><a style="color: #000000" href="{% url "view_profile" i.author %}" ><img style="width:100%" src="{{ i.author.avatar.url }}"></a></div>
+              <p><span style="background-color: #d3d3d3;">Posted by ~ <a style="color: #000000" href="{% url "view_profile" i.author %}" >{{ i.author }}</a> </span></p>
+              <div style="background-color: rgb(32, 32, 32) ">
+              <p style="text-align: center; font-size: 30px; font-family: Arial Black; color: white"><span style="background-color: black "> {{ i.title | title }}</span></p><br>
+         <div style="background-color: black; padding: 10px; margin-left: 25%; margin-right: 25%"><p style="text-align: center"><img width="100%"  src="{{ i.image.url }}"></p></div>
+                  <div style="margin-right: 30%; margin-left: 55%;"><button class="notbutton">Like &#9825;</button></div><br>
+          </div>
+              </div>
+
+      {% endfor %}
+  </div>
+    </div>
+
+<br><br><br>
+    <div style="background-color: rgb(32, 32, 32); color: rgb(208, 208, 208)">
+
+<div style="display: inline-block; margin-right: auto; margin-left: 23%">
+        <h4>Sk8</h4>
+        <p>Corporate info</p>
+        <p>Careers</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Contact Us</h4>
+    <p>317-397-1829</p>
+    <p>Live Chat</p>
+    <p>Email Us</p>
+    <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Customer Service</h4>
+    <p>Order status</p>
+    <p>Shipping</p>
+    <p>Returns</p>
+    <p>Warranty</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Skaters</h4>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Tony_Hawk">Tony Hawk</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Nyjah_Huston">Nyjah Huston</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Rob_Dyrdek">Rob Dyrdek</a></p>
+    <p><a class="links" href="http://en.wikipedia.org/wiki/Chris_Cole_(skateboarder)">Chris Cole</a></p>
+</div>
+    </div><br><br><br>
+
+{#   <div id="slideshow">#}
+{#    <img class="slide" src="../static/img/skate1.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate2.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate3.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate4.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate5.jpeg" >#}
+{#</div>#}
+    <footer style="text-align: center"><a href="https://twitter.com/Art_mc27" ><img style="width: 5%" src="../static/img/twitter.png"></a><a href="http://www.facebook.com" ><img style="width: 4.4%" src="../static/img/facebook.png"></a><a href="http://www.instagram.com" ><img style="width: 5.4%" src="../static/img/instagram.png"></a><a href="http://www.youtube.com" ><img style="width: 4.1%" src="../static/img/youtube.png"></a></footer>
+
+    <footer style="text-align: right; padding-right: 50px; font-size: 10px">
+    <p>Privacy Policy | Terms & Condtions</p>
+<p>@2014 Sk8, Inc. All rights reserved.</p>
+    </footer>
 {% endblock content %}

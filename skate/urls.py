@@ -7,8 +7,10 @@ from skate import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^$', 'skate_shop.views.home', name='home'),
+    url(r'^$', 'skate_shop.views.home', name='home'),
     url(r'^register/$', 'skate_shop.views.register', name='register'),
+    url(r'^view_post/$', 'skate_shop.views.view_post', name='view_post'),
+    url(r'^profile/$', 'skate_shop.views.profile', name='profile'),
     url(r'^shop/$', 'skate_shop.views.shop', name='shop'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
@@ -22,6 +24,8 @@ urlpatterns = patterns('',
         'django.contrib.auth.views.password_reset_confirm',
         name='password_reset_confirm'),
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
+    url(r'^profile/(?P<post_username>\w+)$', 'skate_shop.views.view_profile', name='view_profile'),
+
 
 
 )
