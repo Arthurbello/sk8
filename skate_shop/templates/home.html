@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     <script src="{% static 'js/index3.js'%}"></script>
+    <!-- This should be in an external style sheet -->
     <style>
 .thebutton {background-color: gold}
 
@@ -183,6 +184,7 @@ span.text-content span {
 
 
       {% for i in bet %}
+      <!-- There is NO REASON you should be using inline styles here. Use external CSS! -->
           <div style="height: 30px; background-color: black"></div>
           <div class="{% cycle 'fresh' 'niece'  %}" style="padding: 10px">
 {#      <p style="font-size: 30px">{{ forloop.counter }}.</p>#}
