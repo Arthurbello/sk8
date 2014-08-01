@@ -1,8 +1,22 @@
 {% extends "base_template.html" %}
-
+{% load staticfiles %}
 {% block content %}
 
-<style>body {color: black}</style>
+
+<html>
+<head>
+
+    <script src="{% static 'js/index2.js' %}"></script>
+<style>body {
+	background: url("{% static 'img/back.jpg' %}") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+body {color: black}</style>
+</head>
+<body>
     <header style="float: right">
     <ul class="nav nav-pills">
   <li><a href="{% url 'home' %}">Home</a></li>
@@ -26,13 +40,42 @@
         </li>
 
 </ul>
-</header>
-    <div style="background-color: white">
+</header><br><br>
+    <div style="background-color: black; border-style: solid; border-radius: 20px; padding: 20px; margin-left: auto; margin-right: auto; width: 70%; height: 100%; color: darkgray; opacity: 0.7">
+        <div style="text-align: center; align-content: center; margin-left: auto; margin-right: auto;">
     <form enctype="multipart/form-data" method="post" action=".">
         {% csrf_token %}
-        {{ form.as_p }}
 
-        <input type="submit" value="Submit">
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Avatar</p><br>
+
+       <div style="color: black; text-align: center; display: inline-block">{{ form.avatar }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Username</p><br>
+        <div style="color: black">{{ form.username }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Firstname</p><br>
+        <div style="color: black">{{ form.first_name }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Lastname</p><br>
+        <div style="color: black">{{ form.last_name }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Bio</p><br>
+        <div style="color: black">{{ form.bio }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Email</p><br>
+        <div style="color: black">{{ form.email }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Password</p><br>
+        <div style="color: black">{{ form.password1 }}</div><br><br>
+
+        <p style=" color: white; font-family: Arial Black; font-size: 30px">Confirm password</p><br>
+        <div style="color: black">{{ form.password2 }}</div><br><br>
+
+        <input style="color: #ffffff; background-color: mediumpurple" type="submit" value="Submit">
+
     </form>
+            </div>
     </div>
+</body>
+    </html>
 {% endblock %}

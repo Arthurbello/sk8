@@ -1,12 +1,88 @@
-{% extends "base_template.html" %}
 
+
+{% extends "base_template.html" %}
+{% load staticfiles %}
 {% block content %}
-    <form method="post" action=".">
+
+
+<html>
+<head>
+    <script src="{% static "js/bootstrap.js" %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}">
+<style>body {
+	background: url("{% static 'img/back.jpg' %}") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+body {color: black}</style>
+</head>
+<body>
+    <header style="float: right">
+    <ul class="nav nav-pills">
+  <li><a href="{% url 'home' %}">Home</a></li>
+  <li class="active"><a href="{% url 'shop' %}">Shop</a></li>
+  <li class="dropdown">
+      {% if user.is_authenticated %}
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
+            <li><a href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
+            <li><a href="{% url 'logout' %}"  style="color: white">Sign Out</a></li>
+      {% else %}
+              <li><a class="active" href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+      {% endif %}
+{#            <li class="divider"></li>#}
+{#            <li><a href="#">Separated link</a></li>#}
+{#            <li class="divider"></li>#}
+{#            <li><a href="#">One more separated link</a></li>#}
+          </ul>
+        </li>
+
+</ul>
+</header><br><br>
+<link rel="stylesheet" type="text/css" href="../../static/js/engine1/style.css" />
+	<script type="text/javascript" src="../../static/js/engine1/jquery.js"></script>
+	<!-- End WOWSlider.com HEAD section -->
+
+<div class="row">
+	<div class="col-lg-4">
+        <div style="border-style: solid; margin-left: 200px; border-radius: 20px; background-color: black; padding: 10px; width: 200%">
+		<div id="wowslider-container1">
+	<div class="ws_images"><ul>
+<li><img src="../../static/js/data1/images/sk3.jpg" alt="sk3" title="sk3" id="wows1_0"/></li>
+<li><img src="../../static/js/data1/images/sk2.jpg" alt="sk2" title="sk2" id="wows1_1"/></li>
+<li><img src="../../static/js/data1/images/sk1.jpg" alt="sk1" title="sk1" id="wows1_2"/></li>
+</ul></div>
+<div class="ws_bullets"><div>
+<a href="#" title="sk3"><img src="../../static/js/data1/tooltips/sk3.jpg" alt="sk3"/>1</a>
+<a href="#" title="sk2"><img src="../../static/js/data1/tooltips/sk2.jpg" alt="sk2"/>2</a>
+<a href="#" title="sk1"><img src="../../static/js/data1/tooltips/sk1.jpg" alt="sk1"/>3</a>
+</div></div><span class="wsl"></span>
+	<div class="ws_shadow"></div>
+	</div>
+	<script type="text/javascript" src="../../static/js/engine1/wowslider.js"></script>
+	<script type="text/javascript" src="../../static/js/engine1/script.js"></script>
+
+	<div class="ws_shadow"></div>
+	</div>
+            </div>
+
+	<div class="col-lg-8">
+    <div style="background-color: white; border-style: solid; border-radius: 20px; padding: 20px; margin-left: 63%; margin-right: auto; width: 30%; height: 150px">
+    <form enctype="multipart/form-data" method="post" action="." style="text-align: center">
         {% csrf_token %}
         {{ form.as_p }}
 
-        <input type="submit" value="Log in">
-    </form>
+        <input style="background-color: mediumslateblue; color: #ffffff; font-family: Arial Black" class="btn btn-default" type="submit" value="Login">
 
-    <p>Not member? <a href="{% url 'register' %}">Register!</a></p>
+    </form>
+        <p style="text-align: center">Not member? <a href="{% url 'register' %}">Register!</a></p>
+    </div>
+    </div>
+    </div>
+</body>
+    </html>
 {% endblock %}

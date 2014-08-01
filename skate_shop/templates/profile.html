@@ -1,18 +1,47 @@
 {% extends 'base_template.html' %}
 {% load staticfiles %}
 {% block content %}
+<style>
+.ui-widget-header {
+    background: white !important;
+    border: none
+}
 
+.ui-dialog-titlebar-close{
+    background: #1C1C1C !important;
+}
+
+.ui-dialog {
+    background: #343434 !important;
+    border: thin 1px;
+}
+
+.ui-widget-content {
+    background: #F9F9F9;
+    border: 20px solid #90d93f;
+    color: #222222;
+}
+</style>
 <script src="{% static "js/index.js" %}"></script>
     <link rel="stylesheet" href="{% static 'css/index2.css' %}">
-    <header style="float: right">
-    <ul class="nav nav-pills">
-  <li><a href="{% url 'home' %}">Home</a></li>
-  <li ><a href="{% url 'shop' %}">Shop</a></li>
+    <div style="background-color: white">
+    <div class="row">
+
+<div class="col-lg-3">
+<img style="width: 50%" src="{% static 'img/Screen Shot 2014-07-30 at 1.07.12 PM.png' %}">
+</div>
+
+<div class="col-lg-9">
+<header style="float: right">
+<ul class="nav nav-pills">
+  <li><a style="color: darkgray" href="{% url 'home' %}">Home</a></li>
+      <li><a style="color: darkgray" href="{% url 'shop' %}">Shop</a></li>
+<li><a style="color: darkgray"  href="{% url 'cart' %}">Cart</a></li>
   <li class="dropdown">
           {% if user.is_authenticated %}
-          <a href="#" class="dropdown-toggle" id="active" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <a href="#" style="color: darkgray" class="dropdown-toggle" id="active" data-toggle="dropdown">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
+            <li ><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
             <li><a href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
             <li><a href="{% url 'logout' %}"  style="color: white">Sign Out</a></li>
       {% else %}
@@ -24,25 +53,88 @@
 
 </ul>
 </header>
+</div>
+    </div>
+    </div>
+
 <br><br>
     <div id="holder" style="background-color: white; color: black">
 
-        <div style="background-color: mediumpurple; display: inline-block; margin-left: 40%; margin-right: 40%; padding: 20px">
-        <img width="100%" src="{{ user.avatar.url }}">
-    </div><br><p class="one" style="text-align: center; font-size: 30px; font-family: Impact, Charcoal, sans-serif">{{ user.username }}<br>
+{#        <div style="background-color: mediumpurple; display: inline-block; margin-left: auto; margin-right: auto; padding: 20px;text-align: center">#}
+        <div style="text-align: center; background-color: mediumpurple; padding: 20px;" >
+        <img style="" width="10%" src="{{ user.avatar.url }}">
+            </div>
+{#        </div><br>#}
+        <p class="one" style="text-align: center; font-size: 30px; font-family: Impact, Charcoal, sans-serif">{{ user.username }}<br>
         </p>
-
-        <p id="add_post">Add a post</p>
+ <p class="one" style="text-align: center; font-size: 20px; font-family: Impact, Charcoal, sans-serif">{{ user.bio }}<br>
+        </p>
+        <div style="text-align: center; align-content: center"><button class="active" id="add_post">Add a post</button></div>
 </div>
 
     <div id='d_form' title="Add a post" style="text-align: center">
         <form enctype="multipart/form-data" method="post" action=".">
 
             {% csrf_token %}
-            {{ form.as_p }}
 
-            <input type="submit" value="Submit">
+                <p>Title</p><br>
+            <p style="color: grey">{{ form.title }}</p><br><br>
+                 <p>Description</p><br>
+            <p style="color: green">{{ form.description }}</p><br><br>
+                 <p>Image</p><br>
+            <div style="color: black; text-align: center; display: inline-block">{{ form.image }}</div><br><br>
+                 <p>Location</p><br>
+            <p style="color: black">{{ form.location }}</p><br><br>
+
+
+            <input style="color: white; background-color: mediumpurple" type="submit" value="Post">
         </form>
     </div>
-    <footer style="text-align: right">Copyright &copy; Arthur</footer>
+  <br><br><br>
+    <div style="background-color: rgb(32, 32, 32); color: rgb(208, 208, 208)">
+
+<div style="display: inline-block; margin-right: auto; margin-left: 23%">
+        <h4>Sk8</h4>
+        <p>Corporate info</p>
+        <p>Careers</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Contact Us</h4>
+    <p>317-397-1829</p>
+    <p>Live Chat</p>
+    <p>Email Us</p>
+    <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Customer Service</h4>
+    <p>Order status</p>
+    <p>Shipping</p>
+    <p>Returns</p>
+    <p>Warranty</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Skaters</h4>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Tony_Hawk">Tony Hawk</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Nyjah_Huston">Nyjah Huston</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Rob_Dyrdek">Rob Dyrdek</a></p>
+    <p><a class="links" href="http://en.wikipedia.org/wiki/Chris_Cole_(skateboarder)">Chris Cole</a></p>
+</div>
+    </div><br><br><br>
+
+{#   <div id="slideshow">#}
+{#    <img class="slide" src="../static/img/skate1.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate2.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate3.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate4.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate5.jpeg" >#}
+{#</div>#}
+    <div style="background-color: black">
+    <footer style="text-align: center"><a href="https://twitter.com/Art_mc27" ><img style="width: 5%" src="../static/img/twitter.png"></a><a href="http://www.facebook.com" ><img style="width: 4.4%" src="../static/img/facebook.png"></a><a href="http://www.instagram.com" ><img style="width: 5.4%" src="../static/img/instagram.png"></a><a href="http://www.youtube.com" ><img style="width: 4.1%" src="../static/img/youtube.png"></a></footer>
+
+    <footer style="text-align: right; padding-right: 50px; font-size: 10px">
+    <p>Privacy Policy | Terms & Condtions</p>
+<p>@2014 Sk8, Inc. All rights reserved.</p>
+    </footer></div>
 {% endblock content %}

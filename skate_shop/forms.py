@@ -15,10 +15,11 @@ class SkateUserCreationForm(UserCreationForm):
         first_name = forms.CharField(max_length=100)
         last_name = forms.CharField(max_length=100)
         avatar = forms.ImageField(required=True)
+        bio = forms.CharField(max_length=150, widget=forms.Textarea(attrs={'placeholder': 'Tell us about yourself'}))
         class Meta:
             model = SkateUser
-            fields = ('avatar', "username", 'first_name', 'last_name', "email", "password1",
-                     "password2")
+            fields = ('avatar', "username", 'first_name', 'last_name', 'bio', "email", "password1",
+                      "password2")
 
         def clean_username(self):
             # Since User.username is unique, this check is redundant,
@@ -35,6 +36,6 @@ class SkateUserCreationForm(UserCreationForm):
 
 class PostCreationForm(forms.Form):
     title = forms.CharField(widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
-    # description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'myfieldclass'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'class' : 'myfieldclass'}))
     image = forms.ImageField(required=True)
     location = forms.CharField(max_length=120)

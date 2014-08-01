@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'skate_shop.views.home', name='home'),
     url(r'^register/$', 'skate_shop.views.register', name='register'),
+    # url(r'^search_results/$', 'skate_shop.views.search_results', name='search_results'),
     url(r'^view_post/$', 'skate_shop.views.view_post', name='view_post'),
     url(r'^profile/$', 'skate_shop.views.profile', name='profile'),
     url(r'^shop/$', 'skate_shop.views.shop', name='shop'),
@@ -24,8 +25,9 @@ urlpatterns = patterns('',
         'django.contrib.auth.views.password_reset_confirm',
         name='password_reset_confirm'),
     url(r'^reset/done/$', 'django.contrib.auth.views.password_reset_complete', name='password_reset_complete'),
-    url(r'^profile/(?P<post_username>\w+)$', 'skate_shop.views.view_profile', name='view_profile'),
-
+    url(r'^user/(?P<post_username>\w+)$', 'skate_shop.views.view_profile', name='view_profile'),
+url(r'^new_wish/$', 'skate_shop.views.new_wish', name='new_wish'),
+url(r'^cart/$', 'skate_shop.views.cart', name='cart'),
 
 
 )

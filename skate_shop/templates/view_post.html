@@ -28,17 +28,20 @@
 
 
 
-<br><br><div style="border-style: solid; color:black;background-color: white;;padding: 10px; margin-left: 20%; margin-right: 20% ">
+<br><br><div style="border-style: solid; color:white;background-color: rgb(32, 32, 32);;padding: 10px; margin-left: 20%; margin-right: 20% ">
     <ul>
-         <div style=" display: inline-block; font-size: 30px"><b>
- {{ forloop.counter }}. {{ i.title }}
+         <div style=" display: inline-block; font-size: 30px;"><b>
+  <p style=" text-align: center">{{ i.title }}</p>
          </b>
          </div>
-        <hr>
+
+
     </ul>
+        </div><br>
+        <div style="border-style: solid; color:black;background-color: white;;padding: 10px; margin-left: 20%; margin-right: 20% ">
     <p style="text-align: center"><img width="70%"  src="{{ i.image.url }}"></p>
 </div><br>
     {% endfor %}
-    {% endif %}
+ {% endif %}
 
 {% endblock content %}

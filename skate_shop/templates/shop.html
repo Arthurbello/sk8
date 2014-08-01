@@ -22,17 +22,52 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
+        #overlay {
+            width:100%;
+            height: 100%;
+            background: #000;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.6;
+            z-index: 1000;
+        }
+        #overlay_div {
+            margin: 0 auto;
+            position: absolute;
+            top: 10%;
+            right: 20%;
+            bottom: 10%;
+            left: 20%;
+            z-index: 1500;
+            box-shadow: 0 0 50px #000;
+            -o-box-shadow: 0 0 50px #000;
+            -moz-box-shadow: 0 0 50px #000;
+            -webkit-box-shadow: 0 0 50px #000;
+            -ms-box-shadow: 0 0 50px #000;
+        }
         body {color: white; background-color: white}
     </style>
 </head>
 <body>
+    <div style="background-color: white">
+    <div class="row">
+
+<div class="col-lg-3">
+<img style="width: 50%" src="{% static 'img/Screen Shot 2014-07-30 at 1.07.12 PM.png' %}">
+</div>
+
+<div class="col-lg-9">
 <header style="float: right">
-    <ul class="nav nav-pills">
-  <li><a href="{% url 'home' %}">Home</a></li>
-  <li class="active"><a href="{% url 'shop' %}">Shop</a></li>
+<ul class="nav nav-pills">
+  <li><a style="color: darkgray" href="{% url 'home' %}">Home</a></li>
+      <li  class="active"><a style="color: darkgray" href="{% url 'shop' %}">Shop</a></li>
+<li><a style="color: darkgray"  href="{% url 'cart' %}">Cart</a></li>
   <li class="dropdown">
           {% if user.is_authenticated %}
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
+          <a href="#" style="color: darkgray" class="dropdown-toggle" data-toggle="dropdown">Profile <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{% url 'profile' %}" style="color: white">My Profile</a></li>
             <li><a href="{% url 'view_post' %}"  style="color: white">My Posts</a></li>
@@ -45,34 +80,18 @@
         </li>
 
 </ul>
-</header><br><br>
-
-<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
-	<div id="wowslider-container1">
-	<div class="ws_images"><ul>
-<li><img src="../static/css/data1/images/wide3.jpg" alt="wide3" title="wide3" id="wows1_0"/></li>
-<li><img src="../static/css/data1/images/wide2.jpg" alt="wide2" title="wide2" id="wows1_1"/></li>
-<li><img src="../static/css/data1/images/wide1.jpg" alt="wide1" title="wide1" id="wows1_2"/></li>
-</ul></div>
-<div class="ws_bullets"><div>
-<a href="#" title="wide3"><img src="../static/css/data1/tooltips/wide3.jpg" alt="wide3"/>1</a>
-<a href="#" title="wide2"><img src="../static/css/data1/tooltips/wide2.jpg" alt="wide2"/>2</a>
-<a href="#" title="wide1"><img src="../static/css/data1/tooltips/wide1.jpg" alt="wide1"/>3</a>
-</div></div><span class="wsl"><a href="http://wowslider.com/vb">bootstrap slider</a> by WOWSlider.com v5.6m</span>
-	<div class="ws_shadow"></div>
-	</div>
-	<script type="text/javascript" src="../static/css/engine1/wowslider.js"></script>
-	<script type="text/javascript" src="../static/css/engine1/script.js"></script>
-	<!-- End WOWSlider.com BODY section -->
-<div style="display: inline-block"></div>
-    <div id="work" style="background-color: white" >
-        <div id="eachone" style="margin-left:99px;"> </div>
+</header>
+</div>
     </div>
+    </div><br><br>
+<div class="row">
 
+
+<div class="col-lg-3">
    <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div style="width: 20%" id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
 
@@ -102,24 +121,34 @@
 
             </ul>
         </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-{#        <div id="page-content-wrapper">#}
-{#            <div class="container-fluid">#}
-{#                <div class="row">#}
-{#                    <div class="col-lg-12">#}
-{#                        <h1>Simple Sidebar</h1>#}
-{#                        <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>#}
-{#                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>#}
-{#                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-        <!-- /#page-content-wrapper -->
-
+       </div>
     </div>
+
+<!-- Start WOWSlider.com BODY section --> <!-- add to the <body> of your page -->
+<div class="col-lg-7">
+	<div id="wowslider-container1" style="margin-left: 60px">
+	<div class="ws_images"><ul>
+<li><img src="../static/css/data1/images/wide3.jpg" alt="wide3" title="wide3" id="wows1_0"/></li>
+<li><img src="../static/css/data1/images/wide2.jpg" alt="wide2" title="wide2" id="wows1_1"/></li>
+<li><img src="../static/css/data1/images/wide1.jpg" alt="wide1" title="wide1" id="wows1_2"/></li>
+</ul></div>
+<div class="ws_bullets"><div>
+<a href="#" title="wide3"><img src="../static/css/data1/tooltips/wide3.jpg" alt="wide3"/>1</a>
+<a href="#" title="wide2"><img src="../static/css/data1/tooltips/wide2.jpg" alt="wide2"/>2</a>
+<a href="#" title="wide1"><img src="../static/css/data1/tooltips/wide1.jpg" alt="wide1"/>3</a>
+</div></div><span class="wsl"><a href="http://wowslider.com/vb">bootstrap slider</a> by WOWSlider.com v5.6m</span>
+	<div class="ws_shadow"></div>
+	</div>
+
+
+    <div style="display: inline-block"></div>
+    <div id="work" style="background-color: white" >
+        <div id="eachone"> </div>
+    </div>
+    </div>
+     </div>
+
+
     <!-- /#wrapper -->
 
     <!-- jQuery Version 1.11.0 -->
@@ -137,6 +166,62 @@
     });
     </script>
 
+<script type="text/javascript" src="../static/css/engine1/wowslider.js"></script>
+	<script type="text/javascript" src="../static/css/engine1/script.js"></script>
+	<!-- End WOWSlider.com BODY section -->
 
+<div id="overlay" style="display: none"><p style="text-align: center; color: white; font-size: 30px">Item has been added to cart</p>
+                              <p id='num' style="text-align: center; color: white; font-size: 30px"></p>
+</div>
+{#<div  style="display: none" id="overlay_div"><p style="text-align: center; color: white">Item has been added to cart</p></div>#}
+
+<br><br><br>
+    <div style="background-color: rgb(32, 32, 32); color: rgb(208, 208, 208)">
+
+<div style="display: inline-block; margin-right: auto; margin-left: 23%">
+        <h4>Sk8</h4>
+        <p>Corporate info</p>
+        <p>Careers</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+        <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Contact Us</h4>
+    <p>317-397-1829</p>
+    <p>Live Chat</p>
+    <p>Email Us</p>
+    <p style="color:rgb(32, 32, 32) ">`</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Customer Service</h4>
+    <p>Order status</p>
+    <p>Shipping</p>
+    <p>Returns</p>
+    <p>Warranty</p>
+</div>
+<div style="display: inline-block; margin-right: auto; margin-left: 10%">
+    <h4>Skaters</h4>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Tony_Hawk">Tony Hawk</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Nyjah_Huston">Nyjah Huston</a></p>
+    <p><a  class="links" href="http://en.wikipedia.org/wiki/Rob_Dyrdek">Rob Dyrdek</a></p>
+    <p><a class="links" href="http://en.wikipedia.org/wiki/Chris_Cole_(skateboarder)">Chris Cole</a></p>
+</div>
+    </div>
+
+{#   <div id="slideshow">#}
+{#    <img class="slide" src="../static/img/skate1.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate2.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate3.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate4.jpeg" >#}
+{#    <img class="slide" src="../static/img/skate5.jpeg" >#}
+{#</div>#}
+    <div style="background-color: black"><br><br>
+    <footer style="text-align: center"><a href="https://twitter.com/Art_mc27" ><img style="width: 5%" src="../static/img/twitter.png"></a><a href="http://www.facebook.com" ><img style="width: 4.4%" src="../static/img/facebook.png"></a><a href="http://www.instagram.com" ><img style="width: 5.4%" src="../static/img/instagram.png"></a><a href="http://www.youtube.com" ><img style="width: 4.1%" src="../static/img/youtube.png"></a></footer>
+
+    <footer style="text-align: right; padding-right: 50px; font-size: 10px">
+    <p>Privacy Policy | Terms & Condtions</p>
+<p>@2014 Sk8, Inc. All rights reserved.</p>
+    </footer>
+        </div>
 </body>
 </html>

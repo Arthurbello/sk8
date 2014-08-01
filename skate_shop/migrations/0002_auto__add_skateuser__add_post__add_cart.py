@@ -21,7 +21,8 @@ class Migration(SchemaMigration):
             ('is_staff', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('is_active', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('date_joined', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('bio', self.gf('django.db.models.fields.TextField')(max_length=160)),
         ))
         db.send_create_signal(u'skate_shop', ['SkateUser'])
 
@@ -48,16 +49,21 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('author', self.gf('django.db.models.fields.related.ForeignKey')(related_name='cart_author', to=orm['skate_shop.SkateUser'])),
             ('title', self.gf('django.db.models.fields.TextField')()),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=160)),
             ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('location', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('likes', self.gf('django.db.models.fields.IntegerField')(null=True)),
+            ('created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
         ))
         db.send_create_signal(u'skate_shop', ['Post'])
 
         # Adding model 'Cart'
         db.create_table(u'skate_shop_cart', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('title', self.gf('django.db.models.fields.CharField')(max_length=100)),
-            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
+            ('owner', self.gf('django.db.models.fields.CharField')(max_length=242)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=300)),
+            ('image', self.gf('django.db.models.fields.URLField')(max_length=200)),
+            ('price', self.gf('django.db.models.fields.FloatField')(null=True)),
         ))
         db.send_create_signal(u'skate_shop', ['Cart'])
 
@@ -103,25 +109,31 @@ class Migration(SchemaMigration):
         u'skate_shop.cart': {
             'Meta': {'object_name': 'Cart'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+            'image': ('django.db.models.fields.URLField', [], {'max_length': '200'}),
+            'owner': ('django.db.models.fields.CharField', [], {'max_length': '242'}),
+            'price': ('django.db.models.fields.FloatField', [], {'null': 'True'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '300'})
         },
         u'skate_shop.post': {
             'Meta': {'object_name': 'Post'},
             'author': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'cart_author'", 'to': u"orm['skate_shop.SkateUser']"}),
+            'created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '160'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'likes': ('django.db.models.fields.IntegerField', [], {'null': 'True'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'title': ('django.db.models.fields.TextField', [], {})
         },
         u'skate_shop.skateuser': {
             'Meta': {'object_name': 'SkateUser'},
+            'avatar': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
+            'bio': ('django.db.models.fields.TextField', [], {'max_length': '160'}),
             'date_joined': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'blank': 'True'}),
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '30', 'blank': 'True'}),
             'groups': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Group']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'is_staff': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'is_superuser': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
