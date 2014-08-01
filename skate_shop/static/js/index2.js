@@ -62,6 +62,8 @@ $('.ex').on('mouseover', function() {
                 move.listing_id = movie_response.items[j].itemId;
                 collection.push(move);
 //                console.log(collection);
+                // All this HTML should live in a separate HTML partial template, NOT in your JS. It is messy,
+                // which makes it hard to read and hard to write.
                 $('#eachone').append('<div style="border-style: solid; border-radius:15px; float: right; padding:10px;background-color:black; color: white; margin: 10px; width: 250px; height: 340px;" class="' + movie_response.items[j].itemId + '" id="snot"><p>' + movie_response.items[j].name + '</p><div style="text-align: center; background-color: white"><img src="' + move.image_url + '"></div><br><p style="text-align: center">Price $'+movie_response.items[j].salePrice+'</p><br><button data-price="'+movie_response.items[j].salePrice+'" style="color: black" class="button">Add to cart</button></div>')
 
             }
@@ -90,6 +92,7 @@ $('.ex').on('mouseover', function() {
 //                $('#overlay_div').fadeIn("slow");
                 setTimeout(function(){ $("#overlay").fadeOut('slow'); }, 3000);
 //                setTimeout(function(){ jQuery("#overlay_div").fadeOut('slow'); }, 3000);
+                // console.log() should be used for debugging, and not left in your code when finished
                     console.log($(this).attr('id'));
                     console.log($(this).parent().attr('class'));
                     console.log(move);
