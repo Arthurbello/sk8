@@ -29,6 +29,8 @@ def register(request):
 def profile(request):
     if request.method == 'POST':
         form = PostCreationForm(request.POST, request.FILES)
+        # Why wouldn't you use a simple modelform save method? You could still say form['author'] = request.user
+        # or something along those lines, then call save()
         if form.is_valid():
             title = form.cleaned_data['title']
             author = request.user
@@ -43,6 +45,7 @@ def profile(request):
     return render(request, "profile.html", {'form': form})
 
 def home(request):
+    # This is making two DB calls here, which is very slow. Instead, you could just say set = bet[5:]
     bet = Post.objects.all()
     set = Post.objects.reverse()[:5]
     # avatar = SkateUser.objects.get(avatar=request.user.avatar).url
